@@ -22,9 +22,9 @@
     <dependencies>
         <!--Token dependencies -->
         <dependency>
-            <groupId>com.auth0</groupId>
-            <artifactId>java-jwt</artifactId>
-            <version>4.2.1</version>
+            <groupId>io.fusionauth</groupId>
+            <artifactId>fusionauth-jwt</artifactId>
+            <version>5.2.1</version>
         </dependency>
         <!---->
         <!--Certificate Dependencies-->
