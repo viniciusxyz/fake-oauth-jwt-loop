@@ -8,8 +8,8 @@
     <packaging>jar</packaging>
 
     <properties>
-        <maven.compiler.target>11</maven.compiler.target>
-        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
     </properties>
 
     <repositories>
@@ -93,7 +93,7 @@
                     <plugin>
                         <groupId>org.graalvm.buildtools</groupId>
                         <artifactId>native-maven-plugin</artifactId>
-                        <version>0.9.19</version>
+                        <version>0.9.23</version>
                         <extensions>true</extensions>
                         <executions>
                             <execution>
@@ -118,6 +118,7 @@
                             <mainClass>vvsantos.fake.oauth.loop.MainLoopJwtTest</mainClass>
                             <imageName>${project.artifactId}</imageName>
                             <buildArgs>
+                                --pgo-instrument vvsantos.fake.oauth.loop.MainLoopJwtTest
                                 --no-fallback
                                 --no-server
                                 --enable-http
