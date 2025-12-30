@@ -8,8 +8,8 @@
     <packaging>jar</packaging>
 
     <properties>
-        <maven.compiler.target>17</maven.compiler.target>
-        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>25</maven.compiler.target>
+        <maven.compiler.source>25</maven.compiler.source>
     </properties>
 
     <repositories>
@@ -24,19 +24,19 @@
         <dependency>
             <groupId>com.auth0</groupId>
             <artifactId>java-jwt</artifactId>
-            <version>4.2.1</version>
+            <version>4.5.0</version>
         </dependency>
         <!---->
         <!--Certificate Dependencies-->
         <dependency>
             <groupId>org.bouncycastle</groupId>
-            <artifactId>bcprov-jdk15on</artifactId>
-            <version>1.70</version>
+            <artifactId>bcprov-jdk18on</artifactId>
+            <version>1.83</version>
         </dependency>
         <dependency>
             <groupId>org.bouncycastle</groupId>
-            <artifactId>bcpkix-jdk15on</artifactId>
-            <version>1.70</version>
+            <artifactId>bcpkix-jdk18on</artifactId>
+            <version>1.83</version>
         </dependency>
         <!---->
     </dependencies>
@@ -93,7 +93,7 @@
                     <plugin>
                         <groupId>org.graalvm.buildtools</groupId>
                         <artifactId>native-maven-plugin</artifactId>
-                        <version>0.9.23</version>
+                        <version>0.11.1</version>
                         <extensions>true</extensions>
                         <executions>
                             <execution>
@@ -118,27 +118,18 @@
                             <mainClass>vvsantos.fake.oauth.loop.MainLoopJwtTest</mainClass>
                             <imageName>${project.artifactId}</imageName>
                             <buildArgs>
-                                --pgo-instrument vvsantos.fake.oauth.loop.MainLoopJwtTest
-                                --no-fallback
-                                --no-server
-                                --enable-http
-                                --enable-https
-                                --enable-all-security-services
-                                --install-exit-handlers
-                                -Dfile.encoding=UTF8
-                                -H:+ReportExceptionStackTraces
-                                -H:DeadlockWatchdogInterval=0
-                                -g
-                                --verbose
-                                -H:+AddAllCharsets
-                                -H:+PrintClassInitialization
-                                -H:+PrintAnalysisCallTree
-                                -H:GenerateDebugInfo=2
-                                -H:IncludeResources=.*.(pem)
+                                <buildArg>--no-fallback</buildArg>
+                                <buildArg>--no-server</buildArg>
+                                <buildArg>--enable-http</buildArg>
+                                <buildArg>--enable-https</buildArg>
+                                <buildArg>--enable-all-security-services</buildArg>
+                                <buildArg>--install-exit-handlers</buildArg>
+                                <buildArg>-Dfile.encoding=UTF8</buildArg>
+                                <buildArg>-H:+ReportExceptionStackTraces</buildArg>
+                                <buildArg>-H:DeadlockWatchdogInterval=0</buildArg>
+                                <buildArg>-H:+AddAllCharsets</buildArg>
+                                <buildArg>-H:IncludeResources=.*.(pem)</buildArg>
                             </buildArgs>
-                            <environment>
-                                <USE_NATIVE_IMAGE_JAVA_PLATFORM_MODULE_SYSTEM>false</USE_NATIVE_IMAGE_JAVA_PLATFORM_MODULE_SYSTEM>
-                            </environment>
                         </configuration>
                     </plugin>
                 </plugins>
